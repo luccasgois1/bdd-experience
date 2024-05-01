@@ -8,17 +8,17 @@ Feature: Coffee Catalog
 
   Scenario: Start a purchase of a coffee
     Given The User is on the main page of StartBugs
-    And The User wants to buy a product:
-      | name     | Expresso Gelado |
-      | cost     | R$ 9,99         |
-      | delivery | R$ 10,00        |
+        And The User wants to buy a product:
+            | name     | Expresso Gelado |
+            | cost     | R$ 9,99         |
+            | delivery | R$ 10,00        |
     When The User clicks to buy the coffee
     Then The User goes to Checkout page with the details of the Product
-    And The total cost must be "R$ 19,99"
+        And The total cost must be "R$ 19,99"
 
   Scenario: Start a purchase of a unavailable coffee
     Given The User is on the main page of StartBugs
-    And The User wants to buy a product:
-      | name | Expresso Cremoso |
+        And The User wants to buy a product:
+            | name | Expresso Cremoso |
     When The User clicks to buy the coffee
     Then The User sees a popup for unavailable product
