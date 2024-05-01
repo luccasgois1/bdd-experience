@@ -11,32 +11,24 @@ Given('The User is on the main page of StartBugs') do
     visit 'https://starbugs.vercel.app'
 end
 
-Given('The User wants to buy a {string}') do |product_name|
-    @product_name = product_name
-end
-
-Given('The Product costs {string}') do |product_cost|
-    @product_cost = product_cost
-end
-
-Given('The Delivery cost is {string}') do |product_delivery_cost|
-    @product_delivery_cost = product_delivery_cost
+Given('The User wants to buy a product:') do |table|
+    @product_obj = table.rows_hash
 end
 
 When('The User clicks to buy the coffee') do
-    product = find('.coffee-item', text: @product_name)
+    product = find('.coffee-item', text: @product_obj[:name])
     product.find('.buy-coffee').click
 end
 
 Then('The User goes to Checkout page with the details of the Product') do
     product_title = find('.item-details h1')
-    expect(product_title.text).to eql @product_name
+    expect(product_title.text).to eql @product_obj[:name]
 
     sub_cost = find('.subtotal .sub-price')
-    expect(sub_cost.text).to eql @product_cost
+    expect(sub_cost.text).to eql @product_obj[:cost]
 
     delivery_price = find('.delivery-price')
-    expect(delivery_price.text).to eql @product_delivery_cost
+    expect(delivery_price.text).to eql @product_obj[:delivery]
 end
 
 Then('The total cost must be {string}') do |total_cost|
