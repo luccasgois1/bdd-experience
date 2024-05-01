@@ -11,3 +11,10 @@ This project have the goal of test an existing application using Capybara and Ru
 - Install this before the other tools
 - To install Ruby you need to follow the steps on their main page
     - Link: [How to install Ruby](https://www.ruby-lang.org/pt/documentation/installation/)
+
+## Running the tests
+
+```bash
+bundle install # Install all the dependencies
+bundle exec cucumber # Run the full suite of tests
+```
